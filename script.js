@@ -58,14 +58,14 @@ function submitOrder() {
   alert(text);
 
   // 傳到 Google Sheet
-  fetch("https://script.google.com/macros/s/AKfycbwl8pi4qkjjJdSraqIBQVCBeJkMc73uxzL_I0Ge9XW0xUr-d08vxvY0tpWyBg75_R_4/exec"
-    , {method: "POST",
-    body: JSON.stringify(order),
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(res => res.json())
-  .then(data => alert("送出成功！"))
-  .catch(err => { console.error(err); alert("送出失敗"); });
-}
+ fetch("https://script.google.com/macros/s/AKfycbwl8pi4qkjjJdSraqIBQVCBeJkMc73uxzL_I0Ge9XW0xUr-d08vxvY0tpWyBg75_R_4/exec", {
+  method: "POST",
+  body: JSON.stringify(order),
+  headers: { 'Content-Type': 'application/json' }
+})
+.then(res => res.json())
+.then(data => alert("送出成功！"))
+.catch(err => { console.error(err); alert("送出失敗"); });
+
 
 
