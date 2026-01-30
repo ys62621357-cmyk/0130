@@ -39,7 +39,9 @@ function submitOrder() {
     result.push({ name, unit, qty, note });
 
     let key = name + "_" + unit;
-    if (!summary[key]) summary[key] = { name, unit, total: 0 };
+    if (!summary[key]) {
+      summary[key] = { name, unit, total: 0 };
+    }
     summary[key].total += qty;
   });
 
@@ -49,24 +51,28 @@ function submitOrder() {
     time: new Date().toISOString()
   };
 
-  // 顯示本頁加總
+  // 本頁加總顯示
   let text = "本次下單加總：\n";
   for (let k in summary) {
     let s = summary[k];
-    text += `${s.name}：${s.total} ${s.unit}\n`;
+    text += s.name + "：" + s.total + " " + s.unit + "\n";
   }
   alert(text);
 
-  // 傳到 Google Sheet
- fetch("https://script.google.com/macros/s/AKfycbzjm1VFv_DNq-MJxM4_IOlLUC8qXBCVG1Zutl8ACI2nJdC8IGfEAVljQomjPEXIXEVE/exec", {
-  method: "POST",
-  body: JSON.stringify(order),
-  headers: { 'Content-Type': 'application/json' }
-})
-.then(res => res.json())
-.then(data => alert("送出成功！"))
-.catch(err => { console.error(err); alert("送出失敗"); });
-
-
-
-
+  // ⚠️ 把下面網址換成你的 Apps Script /exec 網址
+  fetch("https://script.google.com/macros/s/AKfycbzjm1VFv_DNq-MJxM4_IOlLUC8qXBCVG1Zutl8ACI2nJdC8IGfEAVljQomjPEXIXEVE/exec", {
+    method: "POST",
+    body: JSON.stringify(order),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("送出成功！");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("送出失敗");
+  });
+}
