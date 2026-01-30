@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>餐廳下單系統</title>
+<style>
+body { font-family: Arial; margin: 20px; }
+.item { margin-bottom: 10px; }
+.item input, .item select { margin-left: 5px; }
+button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+</style>
+</head>
+<body>
+
+<h2>餐廳下單</h2>
+<label>餐廳名稱：<input type="text" id="customerName"></label>
+
+<div class="item">
+  <span>平地高麗菜</span>
+  <select>
+    <option>顆</option>
+    <option>斤</option>
+    <option>件</option>
+  </select>
+  <input type="number" value="0" step="0.5">
+  <input type="text" placeholder="備註">
+</div>
+
+<div class="item">
+  <span>金針菇</span>
+  <select>
+    <option>包</option>
+    <option>斤</option>
+    <option>件</option>
+  </select>
+  <input type="number" value="0" step="0.5">
+  <input type="text" placeholder="備註">
+</div>
+
+<button onclick="submitOrder()">送出訂單</button>
+
+<script src="script.js"></script>
+</body>
+</html>
